@@ -3,7 +3,7 @@ const fs = require("fs");
 const http = require("http");
 
 const hostname = "0.0.0.0";
-const port = 4040;
+const port = process.env.PORT || 4040;
 
 const compileSync = (options) => {
   let command = "ls";
@@ -42,10 +42,10 @@ const runSync = (options) => {
 const cleanupSync = (options) => {
   try {
     //cleanup
-    fs.unlinkSync(options.compiledFile);
     fs.unlinkSync(options.codeFile);
     fs.unlinkSync(options.inputFile);
     fs.unlinkSync(options.outputFile);
+    fs.unlinkSync(options.compiledFile);
   } catch (err) {}
 };
 
@@ -124,6 +124,4 @@ const server = http.createServer((req, res) => {
   });
 });
 
-server.listen(port, hostname, () => {
-  console.log(`Server running at http://${hostname}:${port}/`);
-});
+server.listen(port, hostname);
