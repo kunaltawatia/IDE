@@ -1,0 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Texturina:wght@400;700;900&family=VT323&display=swap");
+
+::selection {
+  background: yellow;
+}
